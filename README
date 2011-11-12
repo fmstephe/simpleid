@@ -1,0 +1,1 @@
+A very simple synchronized id generator. It will generate 2^64 unique ids before it repeats. Plenty for most.
