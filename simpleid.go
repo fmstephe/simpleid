@@ -1,4 +1,4 @@
-package id
+package simpleid
 
 import (
 	"sync"
