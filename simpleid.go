@@ -2,20 +2,25 @@ package simpleid
 
 import (
 	"sync"
+	"strconv"
 )
 
-type IdMaker struct {
+type IdMaker interface {
+	NewId() string
+}
+
+type lockedMaker struct {
 	id   int64
 	lock sync.Mutex
 }
 
-func New() *IdMaker {
-	return new(IdMaker)
+func NewIdMaker() IdMaker {
+	return new(lockedMaker)
 }
 
-func (i *IdMaker) NewId() int64 {
+func (i *lockedMaker) NewId() string {
 	i.lock.Lock()
 	defer i.lock.Unlock()
 	i.id++
-	return i.id
+	return strconv.FormatInt(i.id,16)
 }
