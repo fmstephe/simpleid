@@ -8,13 +8,13 @@ import (
 
 type IdMap interface {
 	Contains(string) bool
-	Add(string,interface{}) error
+	Add(string, interface{}) error
 	Remove(string)
 	Get(string) interface{}
 }
 
 type lockedIdMap struct {
-	ids  map[string] interface{}
+	ids  map[string]interface{}
 	lock sync.Mutex
 }
 
